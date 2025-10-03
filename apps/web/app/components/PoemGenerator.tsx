@@ -3,31 +3,31 @@
 import { useState } from 'react';
 
 export function PoemGenerator() {
-  const [topic, setTopic] = useState('');
+  const [url, setTopic] = useState('');
   const [poem, setPoem] = useState('');
 
   const generatePoem = async () => {
-    const response = await fetch('/api/poem', {
+    const response = await fetch('/api/finnExtract', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ topic }),
+      body: JSON.stringify({ url }),
     });
     const data = await response.json();
-    setPoem(data.poem);
+    setPoem(data);
   };
 
   return (
     <div>
       <input
         type="text"
-        value={topic}
+        value={url}
         onChange={(e) => setTopic(e.target.value)}
         placeholder="Enter a topic"
       />
       <button onClick={generatePoem}>Generate Poem</button>
-      {poem && <pre>{poem}</pre>}
+      {poem && <pre>{JSON.stringify(poem)}</pre>}
     </div>
   );
 }
