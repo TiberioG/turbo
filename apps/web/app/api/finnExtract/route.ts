@@ -15,7 +15,7 @@ const HomeSchema = z.object({
   value: z.number()
 });
 
-export const extractionFlow = defineFlow(
+const extractionFlow = defineFlow(
   {
     name: 'extractionFlow',
     inputSchema: z.string().url(),
@@ -32,7 +32,6 @@ export const extractionFlow = defineFlow(
       HTML: ${pageContent}`,
       output: {schema: HomeSchema},
     });
-
     if (output == null) {
       throw new Error("Response doesn't satisfy schema.");
     }

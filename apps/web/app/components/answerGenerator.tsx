@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export function PoemGenerator() {
+export function AnswerGenerator() {
   const [url, setTopic] = useState('');
   const [poem, setPoem] = useState('');
 
